@@ -6,8 +6,13 @@ import Products from "./Products";
 import data from "./sample-data.json";
 
 const StockUnits = () => {
-	const { total, basket, addItemToBasket, removeItemFromBasket } =
-		useCalculateTotal();
+	const {
+		total,
+		basket,
+		addItemToBasket,
+		removeItemFromBasket,
+		calculateSubtotal,
+	} = useCalculateTotal();
 
 	return (
 		<Box bg="gray.50" maxH="100vh" p={5}>
@@ -20,6 +25,7 @@ const StockUnits = () => {
 				basket={basket}
 				addItemToBasket={addItemToBasket}
 				removeItemFromBasket={removeItemFromBasket}
+				calculateSubtotal={calculateSubtotal}
 			/>
 			<CheckoutDisplay total={total} />
 		</Box>

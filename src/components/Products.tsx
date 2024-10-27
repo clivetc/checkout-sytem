@@ -1,4 +1,4 @@
-import { Box, Button, Flex, Text, Heading } from "@chakra-ui/react";
+import { Box, Button, Flex, Text, Heading, useToast } from "@chakra-ui/react";
 import { IPricingRules } from "../interfaces/stock-interface";
 
 interface IProps {
@@ -7,6 +7,19 @@ interface IProps {
 }
 
 const Products = ({ data, addItemToBasket }: IProps) => {
+	const toast = useToast();
+
+	const handleAddToBasket = (sku: string) => {
+		addItemToBasket(sku);
+		toast({
+			title: `${sku} added to basket`,
+			status: "success",
+			duration: 2000,
+			isClosable: true,
+			position: "top",
+		});
+	};
+
 	return (
 		<Box p={5}>
 			<Flex justify="center" wrap="wrap" gap={6}>
@@ -32,7 +45,7 @@ const Products = ({ data, addItemToBasket }: IProps) => {
 							</Text>
 						)}
 						<Button
-							onClick={() => addItemToBasket(key)}
+							onClick={() => handleAddToBasket(key)}
 							colorScheme="teal"
 							width="full"
 							mt={4}

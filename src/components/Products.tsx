@@ -28,20 +28,21 @@ const Products = ({ data, addItemToBasket }: IProps) => {
 						key={key}
 						p={5}
 						bg="white"
-						shadow="md"
+						shadow="lg"
 						borderRadius="lg"
 						borderWidth="1px"
-						width="250px"
+						width="280px"
 						textAlign="center"
-						_hover={{ shadow: "lg" }}
+						transition="all 0.2s"
+						_hover={{ transform: "scale(1.05)", shadow: "xl" }}
 					>
 						<Heading size="md" mb={3} color="gray.700">
-							{key} ({value.price}p)
+							{key} - £{(value.price / 100).toFixed(2)}
 						</Heading>
 						{value.specialPrice && (
-							<Text fontSize="sm" color="gray.600" mb={3}>
-								Special Offer: {value.specialPrice.quantity} for{" "}
-								{value.specialPrice.price}p
+							<Text fontSize="sm" color="teal.600" mb={3}>
+								Special: {value.specialPrice.quantity} for £
+								{(value.specialPrice.price / 100).toFixed(2)}
 							</Text>
 						)}
 						<Button
@@ -49,6 +50,8 @@ const Products = ({ data, addItemToBasket }: IProps) => {
 							colorScheme="teal"
 							width="full"
 							mt={4}
+							variant="solid"
+							fontWeight="bold"
 						>
 							Add to Basket
 						</Button>
